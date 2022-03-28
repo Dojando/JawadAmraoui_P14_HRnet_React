@@ -41,3 +41,57 @@ legend {
   padding: 5px;
   font-size: 1.2rem;
 }
+
+
+.dropdown-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-top: 20px;
+  padding: 6px 16px;
+  background-color: #F6F6F6;
+  border: 1px solid rgba(122, 122, 122, 0.521);
+  border-radius: 3px;
+}
+
+.open-dropdown-header {
+  border-radius: 3px 3px 0px 0px;
+}
+
+.dropdown-header:hover {
+  background-color: #e4e4e4;
+}
+
+.dropdown-header:active {
+  background-color: rgb(54, 125, 255);
+  color: white;
+}
+
+.dropdown p {
+ user-select: none;
+}
+
+.dropdown-body {
+  display: flex;
+  flex-direction: column;
+  border: 1px solid rgba(122, 122, 122, 0.521);
+  border-radius: 0px 0px 3px 3px;
+}
+
+.dropdown-body span {
+  padding: 3px 0 3px 6px;
+  user-select: none;
+}
+
+.dropdown-body span:hover {
+  background-color: rgb(54, 125, 255);
+  color: white;
+}
+
+.dropdown {
+  margin-bottom: 100px;
+}
+
+.hide-dropdown-body {
+  visibility: hidden;
+}
