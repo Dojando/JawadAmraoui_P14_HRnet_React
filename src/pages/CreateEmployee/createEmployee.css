@@ -19,6 +19,7 @@ form {
 
 fieldset {
   padding: 10px 20px 0 20px;
+  margin-bottom: 30px;
 }
 
 legend {
@@ -42,7 +43,16 @@ legend {
   font-size: 1.2rem;
 }
 
+.save-button-container {
+  display: flex;
+  justify-content: center;
+  margin-bottom: 200px;
+}
 
+.save-button-container button {
+  font-size: 14px;
+  padding: 3px 10px;
+}
 
 .select-style {
   padding: 7px 16px;

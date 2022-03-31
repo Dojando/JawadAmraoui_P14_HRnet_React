@@ -1,0 +1,13 @@
+.container_employee_list {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.header_employee_list {
+  display: flex;
+  align-items: center;
+  width: 350px;
+  justify-content: space-between;
+  margin: 20px 0 50px 0;
+}

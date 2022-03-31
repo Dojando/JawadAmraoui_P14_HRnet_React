@@ -10,33 +10,7 @@ function CreateEmployee() {
 
   // const editName = useSelector((state) => state.editName);
 
-  const [svgColor, setSvgColor] = useState("black");
-  const [toggleDropdown, setToggleDropdown] = useState(false);
-  const [dropdownSelected, setDropdownSelected] = useState("testing");
-  const [selectMouseFocus, setSelectMouseFocus] = useState(false);
   const [dropdownValue, setDropdownValue] = useState(null);
-
-  function handleMouseDown(e) {
-    setSvgColor("white")
-  }
-
-  function handleMouseUp(e) {
-    setSvgColor("black")
-  }
-
-  function handleToggleDropdown() {
-    if (toggleDropdown === false) {
-      setToggleDropdown(true);
-    } else {
-      setToggleDropdown(false);
-    }
-  }
-
-  function handleItemClick(e) {
-    console.log(e.target.innerText)
-    setDropdownSelected(e.target.innerText)
-    setToggleDropdown(false);
-  }
 
   function childValue(childData) {
     console.log(childData)
@@ -73,7 +47,7 @@ function CreateEmployee() {
           <div className="input-wrapper">
             <label htmlFor="city">City</label><input type="text" id="city" />
           </div>
-          <div className="input-wrapper input-select-wrapper">
+          <div className="input-wrapper">
 
             <label htmlFor="state">State</label>
             <Dropdown data={dropArray} getValue={childValue} name={"state"} labelId={"state"}/>
@@ -84,6 +58,13 @@ function CreateEmployee() {
             <label htmlFor="zipcode">Zip Code</label><input type="number" id="zipcode" />
           </div>
         </fieldset>
+        <div className="input-wrapper">
+          <label htmlFor="departement">Departement</label>
+          <Dropdown data={dropArray} getValue={childValue} name={"departement"} labelId={"departement"}/>
+        </div>
+        <div className='save-button-container'>
+          <button>Save</button>          
+        </div>
       </form>
     </div>
   );

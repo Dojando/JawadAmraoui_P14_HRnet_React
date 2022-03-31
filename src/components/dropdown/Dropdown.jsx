@@ -14,7 +14,7 @@ function Dropdown(props) {
 
   return (
     <select onChange={sendDropdownValue} className='select-style' name={props.name} id={props.labelId}>
-      { props.data.map((el) =>
+      { props.data.sort((a, b) => a.localeCompare(b)).map((el) =>
         <option key={el} value={el}>{el}</option>
       ) }
     </select>

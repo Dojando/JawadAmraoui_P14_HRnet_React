@@ -6,7 +6,7 @@ import { store } from "./store";
 import { Route } from "react-router";
 import './style.css';
 import CreateEmployee from './pages/CreateEmployee/CreateEmployee';
-import EmployeeList from './pages/EmployeeList';
+import EmployeeList from './pages/EmployeeList/EmployeeList.jsx';
 
 ReactDOM.render(
   <Provider store={store}>
