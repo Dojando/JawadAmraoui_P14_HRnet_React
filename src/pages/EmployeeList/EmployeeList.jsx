@@ -1,12 +1,10 @@
 import './employeeList.css';
 import { Link } from "react-router-dom";
-import { useState } from 'react';
+import EmployeeTable from "../../components/employeeTable/EmployeeTable"
 import { useSelector } from "react-redux";
 import { useDispatch } from "react-redux";
 
-function CreateEmployee() {
-
-
+function EmployeeList() {
 
   return (
     <div className='container_employee_list'>
@@ -15,8 +13,11 @@ function CreateEmployee() {
         <Link to="/">Home</Link>
       </header>
 
+      <div className='table-container'>
+        <EmployeeTable/>
+      </div>
     </div>
   );
 }
 
-export default CreateEmployee;
+export default EmployeeList;
