@@ -11,13 +11,25 @@ function CreateEmployee() {
   // const editName = useSelector((state) => state.editName);
 
   const [dropdownValue, setDropdownValue] = useState(null);
+  const [showModal, setShowModal] = useState(true);
 
   function childValue(childData) {
     console.log(childData)
     setDropdownValue(childData);
   }
 
-  let dropArray = ["test1","test2","test3"]
+  function saveEmployee(e) {
+    e.preventDefault();
+    setShowModal(true);
+  }
+
+  function closeModal(e) {
+    setShowModal(false);
+  }
+
+  const stateArray = ["Alabama", "Alaska", "American Samoa", "Arizona", "Arkansas", "California", "Colorado", "Connecticut", "Delaware", "District Of Columbia", "Federated States Of Micronesia", "Florida", "Georgia", "Guam", "Hawaii", "Idaho", "Illinois", "Indiana", "Iowa", "Kansas", "Kentucky", "Louisiana", "Maine", "Marshall Islands", "Maryland", "Massachusetts", "Michigan", "Minnesota", "Mississippi", "Missouri", "Montana", "Nebraska", "Nevada", "New Hampshire", "New Jersey", "New Mexico", "New York", "North Carolina", "North Dakota", "Northern Mariana Islands", "Ohio", "Oklahoma", "Oregon", "Palau", "Pennsylvania", "Puerto Rico", "Rhode Island", "South Carolina", "South Dakota", "Tennessee", "Texas", "Utah", "Vermont", "Virgin Islands", "Virginia", "Washington", "West Virginia", "Wisconsin", "Wyoming"]
+
+  const departmentArray = ["Sales","Marketing","Engineering", "Human Resources", "Legal"]
 
   return (
     <div className='container_create_employee'>
@@ -50,7 +62,7 @@ function CreateEmployee() {
           <div className="input-wrapper">
 
             <label htmlFor="state">State</label>
-            <Dropdown data={dropArray} getValue={childValue} name={"state"} labelId={"state"}/>
+            <Dropdown data={stateArray} getValue={childValue} name={"state"} labelId={"state"}/>
 
           </div>
 
@@ -59,13 +71,21 @@ function CreateEmployee() {
           </div>
         </fieldset>
         <div className="input-wrapper">
-          <label htmlFor="departement">Departement</label>
-          <Dropdown data={dropArray} getValue={childValue} name={"departement"} labelId={"departement"}/>
+          <label htmlFor="department">Department</label>
+          <Dropdown data={departmentArray} getValue={childValue} name={"department"} labelId={"department"}/>
         </div>
         <div className='save-button-container'>
-          <button>Save</button>          
+          <button onClick={saveEmployee}>Save</button>          
         </div>
       </form>
+      { showModal ? 
+      <div className='save-modal' onClick={closeModal}>
+        <div className='save-validation' onClick={(e) => e.stopPropagation()}>
+          Employee Created !
+          <div className='close-modal' onClick={closeModal}><span>❌</span></div>
+        </div>
+        
+      </div> : null }
     </div>
   );
 }
