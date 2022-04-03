@@ -1,31 +1,22 @@
 import './createEmployee.css';
 import { Link } from "react-router-dom";
-import { useState } from 'react';
 import Dropdown from "../../components/dropdown/Dropdown"
 import { useSelector } from "react-redux";
 import { useDispatch } from "react-redux";
+import { closeModal, saveEmployee, getStateValue, getDepartmentValue, handleFirstNameChange, handleLastNameChange, handleDateBirthChange, handleStartDateChange, handleStreetChange, handleCityChange, handleZipCodeChange } from "../../store";
 
 function CreateEmployee() {
-  // const dispatch = useDispatch();
+  const dispatch = useDispatch();
 
-  // const editName = useSelector((state) => state.editName);
-
-  const [dropdownValue, setDropdownValue] = useState(null);
-  const [showModal, setShowModal] = useState(true);
-
-  function childValue(childData) {
-    console.log(childData)
-    setDropdownValue(childData);
-  }
-
-  function saveEmployee(e) {
-    e.preventDefault();
-    setShowModal(true);
-  }
-
-  function closeModal(e) {
-    setShowModal(false);
-  }
+  const firstNameValue = useSelector((state) => state.firstNameValue);
+  const lastNameValue = useSelector((state) => state.lastNameValue);
+  const dateBirthValue = useSelector((state) => state.dateBirthValue);
+  const startDateValue = useSelector((state) => state.startDateValue);
+  const streetValue = useSelector((state) => state.streetValue);
+  const cityValue = useSelector((state) => state.cityValue);
+  const zipCodeValue = useSelector((state) => state.zipCodeValue);
+  const showModal = useSelector((state) => state.showModal);
+  const errorMessage = useSelector((state) => state.errorMessage);
 
   const stateArray = ["Alabama", "Alaska", "American Samoa", "Arizona", "Arkansas", "California", "Colorado", "Connecticut", "Delaware", "District Of Columbia", "Federated States Of Micronesia", "Florida", "Georgia", "Guam", "Hawaii", "Idaho", "Illinois", "Indiana", "Iowa", "Kansas", "Kentucky", "Louisiana", "Maine", "Marshall Islands", "Maryland", "Massachusetts", "Michigan", "Minnesota", "Mississippi", "Missouri", "Montana", "Nebraska", "Nevada", "New Hampshire", "New Jersey", "New Mexico", "New York", "North Carolina", "North Dakota", "Northern Mariana Islands", "Ohio", "Oklahoma", "Oregon", "Palau", "Pennsylvania", "Puerto Rico", "Rhode Island", "South Carolina", "South Dakota", "Tennessee", "Texas", "Utah", "Vermont", "Virgin Islands", "Virginia", "Washington", "West Virginia", "Wisconsin", "Wyoming"]
 
@@ -40,51 +31,51 @@ function CreateEmployee() {
       <h2>Create Employee</h2>
       <form>
         <div className="input-wrapper">
-          <label htmlFor="firstname">First Name</label><input type="text" id="firstname" />
+          <label htmlFor="firstname">First Name</label><input value={firstNameValue} onChange={(e) => {dispatch(handleFirstNameChange(e))}} type="text" id="firstname" />
         </div>
         <div className="input-wrapper">
-          <label htmlFor="lastname">First Name</label><input type="text" id="lastname" />
+          <label htmlFor="lastname">Last Name</label><input value={lastNameValue} onChange={(e) => {dispatch(handleLastNameChange(e))}} type="text" id="lastname" />
         </div>
         <div className="input-wrapper">
-          <label htmlFor="dateofbirth">Date of Birth</label><input type="date" id="dateofbirth" />
+          <label htmlFor="dateofbirth">Date of Birth</label><input value={dateBirthValue} onChange={(e) => {dispatch(handleDateBirthChange(e))}} type="date" id="dateofbirth" />
         </div>
         <div className="input-wrapper">
-          <label htmlFor="startdate">Start Date</label><input type="date" id="startdate" />
+          <label htmlFor="startdate">Start Date</label><input value={startDateValue} onChange={(e) => {dispatch(handleStartDateChange(e))}} type="date" id="startdate" />
         </div>
         <fieldset>
           <legend>Address</legend>
           <div className="input-wrapper">
-            <label htmlFor="street">Street</label><input type="text" id="street" />
+            <label htmlFor="street">Street</label><input value={streetValue} onChange={(e) => {dispatch(handleStreetChange(e))}} type="text" id="street" />
           </div>
           <div className="input-wrapper">
-            <label htmlFor="city">City</label><input type="text" id="city" />
+            <label htmlFor="city">City</label><input value={cityValue} onChange={(e) => {dispatch(handleCityChange(e))}} type="text" id="city" />
           </div>
           <div className="input-wrapper">
 
             <label htmlFor="state">State</label>
-            <Dropdown data={stateArray} getValue={childValue} name={"state"} labelId={"state"}/>
+            <Dropdown data={stateArray} getValue={(e) => dispatch(getStateValue(e))} name={"state"} labelId={"state"}/>
 
           </div>
 
           <div className="input-wrapper">
-            <label htmlFor="zipcode">Zip Code</label><input type="number" id="zipcode" />
+            <label htmlFor="zipcode">Zip Code</label><input value={zipCodeValue} onChange={(e) => {dispatch(handleZipCodeChange(e))}} type="number" id="zipcode" />
           </div>
         </fieldset>
         <div className="input-wrapper">
           <label htmlFor="department">Department</label>
-          <Dropdown data={departmentArray} getValue={childValue} name={"department"} labelId={"department"}/>
+          <Dropdown data={departmentArray} getValue={(e) => dispatch(getDepartmentValue(e))} name={"department"} labelId={"department"}/>
         </div>
         <div className='save-button-container'>
-          <button onClick={saveEmployee}>Save</button>          
+          <button type='submit' onClick={(e) => dispatch(saveEmployee(e))}>Save</button>  
+          { errorMessage ? <span className='error-message'>Veuillez remplir les champs vides</span> : null }        
         </div>
       </form>
       { showModal ? 
-      <div className='save-modal' onClick={closeModal}>
+      <div className='save-modal' onClick={() => dispatch(closeModal())}>
         <div className='save-validation' onClick={(e) => e.stopPropagation()}>
           Employee Created !
-          <div className='close-modal' onClick={closeModal}><span>❌</span></div>
+          <div className='close-modal' onClick={() => dispatch(closeModal())}><span>❌</span></div>
         </div>
-        
       </div> : null }
     </div>
   );
