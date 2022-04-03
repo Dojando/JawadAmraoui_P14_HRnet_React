@@ -1,5 +1,6 @@
 import React from 'react'
 import styled from 'styled-components'
+import { useSelector } from "react-redux";
 import { useTable, useSortBy, useGlobalFilter, useAsyncDebounce, usePagination } from 'react-table'
 
 const Styles = styled.div`
@@ -107,18 +108,6 @@ function Table({ columns, data }) {
 
   return (
     <>
-          {/* <pre>
-        <code>
-          {JSON.stringify(
-            {
-              pageSize,
-              pageIndex,
-              pageFirstId,
-              pageLastId
-            },
-          )}
-        </code>
-      </pre> */}
       <div className='table-header'>
       <div>
         <span>Show </span>
@@ -180,7 +169,7 @@ function Table({ columns, data }) {
         </tbody>
       </table>
       <div className='table-footer'>
-        <div>Showing {Number(page[0].id) + 1} to {Number(page[page.length - 1].id) + 1} of {rows.length} entries</div>
+        <div>Showing {page.length === 0 ? "0" : Number(page[0].id) + 1} to {page.length === 0 ? "0" : Number(page[page.length - 1].id) + 1} of {rows.length} entries</div>
         <div className="pagination">
         <span>
           Page{' '}
@@ -214,7 +203,10 @@ function Table({ columns, data }) {
   )
 }
 
-function EmployeeTable() {
+function EmployeeTable(props) {
+  console.log(props)
+  const employeeData = props.employeeList;
+  
   const columns = React.useMemo(
     () => [
       {
@@ -257,162 +249,7 @@ function EmployeeTable() {
     []
   )
 
-  const data = React.useMemo(() => [
-    {
-      firstName: 'tom',
-      lastName: 'tim',
-      startDate: 'Hello',
-      department: 'World',
-      dateBirth: 'til',
-      street: 'til',
-      city: 'til',
-      state: 'til',
-      zipCode: 55,
-    },
-    {
-      firstName: 'Hello',
-      lastName: 'World',
-      startDate: 'Hello',
-      department: 'World',
-      dateBirth: 'til',
-      street: 'til',
-      city: 'til',
-      state: 'til',
-      zipCode: 'World',
-    },
-    {
-      firstName: 'Hello',
-      lastName: 'World',
-      startDate: 'Hello',
-      department: 'World',
-      dateBirth: 'til',
-      street: 'til',
-      city: 'til',
-      state: 'til',
-      zipCode: 'World',
-    },
-    {
-      firstName: 'Hello',
-      lastName: 'World',
-      startDate: 'Hello',
-      department: 'World',
-      dateBirth: 'til',
-      street: 'til',
-      city: 'til',
-      state: 'til',
-      zipCode: 'World',
-    },
-    {
-      firstName: 'Hello',
-      lastName: 'World',
-      startDate: 'Hello',
-      department: 'World',
-      dateBirth: 'til',
-      street: 'til',
-      city: 'til',
-      state: 'til',
-      zipCode: 'World',
-    },
-    {
-      firstName: 'Hello',
-      lastName: 'World',
-      startDate: 'Hello',
-      department: 'World',
-      dateBirth: 'til',
-      street: 'til',
-      city: 'til',
-      state: 'til',
-      zipCode: 'World',
-    },
-    {
-      firstName: 'Hello',
-      lastName: 'World',
-      startDate: 'Hello',
-      department: 'World',
-      dateBirth: 'til',
-      street: 'til',
-      city: 'til',
-      state: 'til',
-      zipCode: 'World',
-    },
-    {
-      firstName: 'Hello',
-      lastName: 'World',
-      startDate: 'Hello',
-      department: 'World',
-      dateBirth: 'til',
-      street: 'til',
-      city: 'til',
-      state: 'til',
-      zipCode: 'World',
-    },
-    {
-      firstName: 'Hello',
-      lastName: 'World',
-      startDate: 'Hello',
-      department: 'World',
-      dateBirth: 'til',
-      street: 'til',
-      city: 'til',
-      state: 'til',
-      zipCode: 'World',
-    },
-    {
-      firstName: 'Hello',
-      lastName: 'World',
-      startDate: 'Hello',
-      department: 'World',
-      dateBirth: 'til',
-      street: 'til',
-      city: 'til',
-      state: 'til',
-      zipCode: 'World',
-    },
-    {
-      firstName: 'Hello',
-      lastName: 'World',
-      startDate: 'Hello',
-      department: 'World',
-      dateBirth: 'til',
-      street: 'til',
-      city: 'til',
-      state: 'til',
-      zipCode: 'World',
-    },
-    {
-      firstName: 'Hello',
-      lastName: 'World',
-      startDate: 'Hello',
-      department: 'World',
-      dateBirth: 'til',
-      street: 'til',
-      city: 'til',
-      state: 'til',
-      zipCode: 'World',
-    },
-    {
-      firstName: 'Hello',
-      lastName: 'World',
-      startDate: 'Hello',
-      department: 'World',
-      dateBirth: 'til',
-      street: 'til',
-      city: 'til',
-      state: 'til',
-      zipCode: 'World',
-    },
-    {
-      firstName: 'Hello',
-      lastName: 'World',
-      startDate: 'Hello',
-      department: 'World',
-      dateBirth: 'til',
-      street: 'til',
-      city: 'til',
-      state: 'til',
-      zipCode: 'World',
-    },
-  ],
+  const data = React.useMemo(() => employeeData,
   []
 )
 

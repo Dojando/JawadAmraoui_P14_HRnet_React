@@ -2,9 +2,10 @@ import './employeeList.css';
 import { Link } from "react-router-dom";
 import EmployeeTable from "../../components/employeeTable/EmployeeTable"
 import { useSelector } from "react-redux";
-import { useDispatch } from "react-redux";
 
 function EmployeeList() {
+
+  const employeeList = useSelector((state) => state.employeeList);
 
   return (
     <div className='container_employee_list'>
@@ -14,7 +15,7 @@ function EmployeeList() {
       </header>
 
       <div className='table-container'>
-        <EmployeeTable/>
+        <EmployeeTable employeeList={employeeList} />
       </div>
     </div>
   );
