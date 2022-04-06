@@ -1,6 +1,6 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import { BrowserRouter as Router, Routes } from 'react-router-dom';
+import { Routes, HashRouter } from 'react-router-dom';
 import { Provider } from "react-redux";
 import { store } from "./store";
 import { Route } from "react-router";
@@ -11,12 +11,12 @@ import EmployeeList from './pages/EmployeeList/EmployeeList.jsx';
 ReactDOM.render(
   <Provider store={store}>
     <React.StrictMode>
-      <Router>
+      <HashRouter>
         <Routes>
           <Route path="/" element={<CreateEmployee/>} />
           <Route path="/employee-list" element={<EmployeeList/>} />
         </Routes>
-      </Router>
+      </HashRouter>
     </React.StrictMode>
   </Provider>,
   document.getElementById('root')
