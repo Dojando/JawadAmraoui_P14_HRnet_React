@@ -1,6 +1,7 @@
 import './createEmployee.css';
+import { Dropdown } from "dojando-react-dropdown-jquery";
 import { Link } from "react-router-dom";
-import Dropdown from "../../components/dropdown/Dropdown"
+
 import { useSelector } from "react-redux";
 import { useDispatch } from "react-redux";
 import { closeModal, saveEmployee, getStateValue, getDepartmentValue, handleFirstNameChange, handleLastNameChange, handleDateBirthChange, handleStartDateChange, handleStreetChange, handleCityChange, handleZipCodeChange } from "../../store";

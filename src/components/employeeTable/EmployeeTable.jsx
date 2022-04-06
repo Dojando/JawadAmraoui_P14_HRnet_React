@@ -1,6 +1,5 @@
 import React from 'react'
 import styled from 'styled-components'
-import { useSelector } from "react-redux";
 import { useTable, useSortBy, useGlobalFilter, useAsyncDebounce, usePagination } from 'react-table'
 
 const Styles = styled.div`
@@ -90,7 +89,6 @@ function Table({ columns, data }) {
     canPreviousPage,
     canNextPage,
     pageOptions,
-    pageCount,
     gotoPage,
     nextPage,
     previousPage,
@@ -109,37 +107,33 @@ function Table({ columns, data }) {
   return (
     <>
       <div className='table-header'>
-      <div>
-        <span>Show </span>
-        <select
-          value={pageSize}
-          onChange={e => {
-            setPageSize(Number(e.target.value))
-          }}>{[1, 2, 3 ,10, 25, 50, 100].map(pageSize => (
-            <option key={pageSize} value={pageSize}>
-              {pageSize}
-            </option>
-          ))}
-        </select>
-        <span> entries</span>
-      </div>
-      <GlobalFilter
-        preGlobalFilteredRows={preGlobalFilteredRows}
-        setGlobalFilter={setGlobalFilter}
-      />        
+        <div>
+          <span>Show </span>
+          <select
+            value={pageSize}
+            onChange={e => {
+              setPageSize(Number(e.target.value))
+            }}>{[1, 2, 3 ,10, 25, 50, 100].map(pageSize => (
+              <option key={pageSize} value={pageSize}>
+                {pageSize}
+              </option>
+            ))}
+          </select>
+          <span> entries</span>
+        </div>
+        <GlobalFilter
+          preGlobalFilteredRows={preGlobalFilteredRows}
+          setGlobalFilter={setGlobalFilter}
+        />        
       </div>
 
       <table {...getTableProps()}>
-      
         <thead>
           {headerGroups.map(headerGroup => (
             <tr {...headerGroup.getHeaderGroupProps()}>
               {headerGroup.headers.map(column => (
-                // Add the sorting props to control sorting. For this example
-                // we can add them into the header props
                 <th {...column.getHeaderProps(column.getSortByToggleProps())}>
                   {column.render('Header')}
-                  {/* Add a sort direction indicator */}
                   <span>
                     {column.isSorted
                       ? column.isSortedDesc
@@ -171,40 +165,38 @@ function Table({ columns, data }) {
       <div className='table-footer'>
         <div>Showing {page.length === 0 ? "0" : Number(page[0].id) + 1} to {page.length === 0 ? "0" : Number(page[page.length - 1].id) + 1} of {rows.length} entries</div>
         <div className="pagination">
-        <span>
-          Page{' '}
-          <strong>
-            {pageIndex + 1} of {pageOptions.length}
-          </strong>{' '}
-        </span>
-        <button onClick={() => previousPage()} disabled={!canPreviousPage}>
-          {'Previous'}
-        </button>{' '}
+          <span>
+            Page{' '}
+            <strong>
+              {pageIndex + 1} of {pageOptions.length}
+            </strong>{' '}
+          </span>
+          <button onClick={() => previousPage()} disabled={!canPreviousPage}>
+            {'Previous'}
+          </button>{' '}
 
-        <span>
-          <input
-            type="number"
-            value={pageIndex + 1}
-            onChange={e => {
-              const page = e.target.value ? Number(e.target.value) - 1 : 0
-              gotoPage(page)
-            }}
-            style={{ width: '30px' }}
-          />
-        </span>{' '}
+          <span>
+            <input
+              type="number"
+              value={pageIndex + 1}
+              onChange={e => {
+                const page = e.target.value ? Number(e.target.value) - 1 : 0
+                gotoPage(page)
+              }}
+              style={{ width: '30px' }}
+            />
+          </span>{' '}
 
-        <button onClick={() => nextPage()} disabled={!canNextPage}>
-          {'Next'}
-        </button>{' '}
-
-      </div>
+          <button onClick={() => nextPage()} disabled={!canNextPage}>
+            {'Next'}
+          </button>{' '}
+        </div>
       </div>
     </>
   )
 }
 
 function EmployeeTable(props) {
-  console.log(props)
   const employeeData = props.employeeList;
   
   const columns = React.useMemo(
