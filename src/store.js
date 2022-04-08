@@ -14,7 +14,10 @@ const initialState = {
   stateValue: "",
   zipCodeValue: "",
   departmentValue: "",
-  employeeList: [],
+  employeeList: [  {"firstName":"Tom","lastName":"Tom","dateBirth":"04/14/2022","startDate":"04/05/2022","department":"Sales","street":"5 street","city":"New york","state":"AL","zipCode":"1"},{"firstName":"tam","lastName":"tam","dateBirth":"04/05/2022","startDate":"04/04/2022","department":"Engineering","street":"8 street","city":"detroit","state":"AL","zipCode":"2"},{"firstName":"Tim","lastName":"Tim","dateBirth":"04/05/2022","startDate":"04/06/2022","department":"Human Resources","street":"new street","city":"Chicago","state":"AL","zipCode":"3"},
+  {"firstName":"Tem","lastName":"Tem","dateBirth":"04/14/2022","startDate":"04/05/2022","department":"Sales","street":"56 street","city":"New york","state":"AL","zipCode":"4"},{"firstName":"tam","lastName":"tam","dateBirth":"04/05/2022","startDate":"04/04/2022","department":"Engineering","street":"8 street","city":"detroit","state":"AL","zipCode":"5"},{"firstName":"Tim","lastName":"Tim","dateBirth":"04/05/2022","startDate":"04/06/2022","department":"Human Resources","street":"new street","city":"Chicago","state":"AL","zipCode":"6"},
+  {"firstName":"Tem","lastName":"Tem","dateBirth":"04/14/2022","startDate":"04/05/2022","department":"Sales","street":"56 street","city":"New york","state":"AL","zipCode":"7"},{"firstName":"tam","lastName":"tam","dateBirth":"04/05/2022","startDate":"04/04/2022","department":"Engineering","street":"8 street","city":"detroit","state":"AL","zipCode":"8"},{"firstName":"Tim","lastName":"Tim","dateBirth":"04/05/2022","startDate":"04/06/2022","department":"Human Resources","street":"new street","city":"Chicago","state":"AL","zipCode":"9"},
+  {"firstName":"Tem","lastName":"Tem","dateBirth":"04/14/2022","startDate":"04/05/2022","department":"Sales","street":"56 street","city":"New york","state":"AL","zipCode":"10"},{"firstName":"tam","lastName":"tam","dateBirth":"04/05/2022","startDate":"04/04/2022","department":"Engineering","street":"8 street","city":"detroit","state":"AL","zipCode":"11"},{"firstName":"Tim","lastName":"Tim","dateBirth":"04/05/2022","startDate":"04/06/2022","department":"Human Resources","street":"new street","city":"Chicago","state":"AL","zipCode":"12"}],
 };
 
 // actions creators
